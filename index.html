@@ -75,7 +75,11 @@
 				Amazing! That's so Rama!
 			</div> -->
 
-			<img src="img/glitter.gif" class="glitter" id="glitter">
+			<!-- <img src="img/glitter.gif" class="glitter" id="glitter"> -->
+
+			<div class="loader" id="loader" style="display: none;">
+				<img src="img/loader.gif">
+			</div>
 
 		</div>
 	</div>
@@ -129,43 +133,43 @@
 // });
 
 function changeHair(){
+	runLoader();
 	var random = Math.floor(Math.random() * 7) + 1;
 	$("#hair img").attr('src', 'img/hair/' + random + '.png');
-	runGlitter();
 }
 
 function changeShades(){
+	runLoader();
 	var random = Math.floor(Math.random() * 3) + 1;
 	$("#shades img").attr('src', 'img/shades/' + random + '.png');
-	runGlitter();
 }
 
 function changeShirt(){
+	runLoader();
 	var random = Math.floor(Math.random() * 6) + 1;
 	$("#torso img").attr('src', 'img/shirt/' + random + '.png');
-	runGlitter();
 }
 
 function changeMask(){
+	runLoader();	
 	if(Number($("#mask img").attr('src').substr(9,1) == 1)){
 		$("#mask img").attr('src', 'img/mask/' + 2 + '.png');
 	} else {
 		$("#mask img").attr('src', 'img/mask/' + 1 + '.png');
 	}
-	runGlitter();
 }
 
 function changeBG(){
+	runLoader();	
 	var random = Math.floor(Math.random() * 5) + 1;
 	$("#card").css("background-image", "url(./img/bg/" + random + ".png)");  
-	runGlitter();
 }
 
-function runGlitter(){
-	$("#glitter").fadeIn(300);
+function runLoader(){
+	$("#loader").fadeIn(100);
 	setTimeout(() => {
-		$("#glitter").fadeOut(300);
-	}, 1000);
+		$("#loader").fadeOut(300);
+	}, 500);
 }
 
 function downloadURI(uri, name) {
