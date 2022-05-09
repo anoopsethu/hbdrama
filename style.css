@@ -272,6 +272,9 @@ body{
   width: 200px;
   margin: auto;
 }
+.hidden-item{
+  display: none;
+}
 
 
 @media(max-width: 800px){
