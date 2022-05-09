@@ -6,6 +6,7 @@
 	<!-- Primary Meta Tags -->
 	<meta name="title" content="Happy Birthday Rama!">
 	<meta name="description" content="Happy Birthday Rama">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website">
@@ -26,9 +27,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
 </head>
 <body>
-<div class="mob"></div>
 <div class="bg-overlay" id="bg-overlay">
 </div>
+
 <div class="main-container">
 	<div class="outer-container" id="outer">
 		<div class="card-container" id="card">
@@ -40,6 +41,9 @@
 					</div>
 					<div id="hair" class="hair">
 						<img src="img/hair/1.png">
+					</div>
+					<div id="mask" class="mask">
+						<img src="img/mask/1.png">
 					</div>
 					<div id="shades" class="shades">
 						<img src="img/shades/1.png">
@@ -65,13 +69,26 @@
 				<a class="btn" onclick="changeBG()">
 					<img src="img/btn/bg-btn.png">
 				</a>
-				<a class="btn" onclick="DownloadAsImage()">
-					<img src="img/btn/download-btn.png">
-				</a>
 			</div>
+
+			<!-- <div class="toast" id="toast">
+				Amazing! That's so Rama!
+			</div> -->
+
+			<img src="img/glitter.gif" class="glitter" id="glitter">
+
 		</div>
 	</div>
 </div>	
+
+<div class="mob">
+	<div class="image-fader">
+	  <img src="https://dummyimage.com/300x200/f00/fff" />
+	  <img src="https://dummyimage.com/300x200/0f0/fff" />
+	  <img src="https://dummyimage.com/300x200/00f/fff" />
+	  <img src="https://dummyimage.com/300x200/f0f/fff" />
+	</div>
+</div>
 
 <p class="footer">Crafted with 💖, @zetaux</p>
 
@@ -87,39 +104,47 @@
 // });
 
 function changeHair(){
-	// var list = [1,2,3,4,5,6,7];
-	// var curr = $("#hair img").attr('src').substr(9, 1);
-	// console.log("curr: ", curr);
-	// var i = list.indexOf(Number(curr));
-	// console.log("i: ", i);
-	// list.splice(i, 1);
-	// console.log("list: ", list);
-	// console.log(curr, 9999999);
-	// var random = list[Math.floor(Math.random() * list.length) + 1];
-	// $("#hair img").attr('src', 'img/hair/' + random + '.png');
 	var random = Math.floor(Math.random() * 7) + 1;
 	$("#hair img").attr('src', 'img/hair/' + random + '.png');
+	runGlitter();
 }
 
 function changeShades(){
 	var random = Math.floor(Math.random() * 3) + 1;
 	$("#shades img").attr('src', 'img/shades/' + random + '.png');
+	runGlitter();
 }
 
 function changeShirt(){
 	var random = Math.floor(Math.random() * 6) + 1;
 	$("#torso img").attr('src', 'img/shirt/' + random + '.png');
+	runGlitter();
+}
+
+function changeMask(){
+	if(Number($("#mask img").attr('src').substr(9,1) == 1)){
+		$("#mask img").attr('src', 'img/mask/' + 2 + '.png');
+	} else {
+		$("#mask img").attr('src', 'img/mask/' + 1 + '.png');
+	}
+	runGlitter();
 }
 
 function changeBG(){
 	var random = Math.floor(Math.random() * 5) + 1;
 	$("#card").css("background-image", "url(./img/bg/" + random + ".png)");  
+	runGlitter();
 }
 
+function runGlitter(){
+	$("#glitter").fadeIn(300);
+	setTimeout(() => {
+		$("#glitter").fadeOut(300);
+	}, 1000);
+}
 
 function downloadURI(uri, name) {
     var link = document.createElement("a");
-
     link.download = name;
     link.href = uri;
     document.body.appendChild(link);
@@ -127,25 +152,7 @@ function downloadURI(uri, name) {
 }
 
 
-
 function DownloadAsImage() {
-    // var element = $("#card")[0];
-    // html2canvas(element).then(function (canvas) {
-    //     var myImage = canvas.toDataURL();
-    //     downloadURI(myImage, "cartao-virtual.png");
-    // });
-
- //    html2canvas(document.body, {
-	//     letterRendering: 1, 
-	// 	allowTaint : true, 
-	// 	foreignObjectRendering: true,
-	// 	useCORS: true,
-	// }).then(canvas => {
-	// 	var myImage = canvas.toDataURL();
- //        downloadURI(myImage, "cartao-virtual.png");
-	// });
-
-
 	html2canvas(document.querySelector("#card"), { logging: true, letterRendering: 1, 
 		allowTaint: true, 
 		useCORS: true,
@@ -157,9 +164,16 @@ function DownloadAsImage() {
 		var myImage = canvas.toDataURL();
         downloadURI(myImage, "cartao-virtual.png");
 	});
+}
 
 
-
+function ShowToast() {
+  // Get the snackbar DIV
+  var x = document.getElementById("toast");
+  // Add the "show" class to DIV
+  x.className = "show";
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
 </script>
