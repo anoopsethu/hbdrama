@@ -199,8 +199,10 @@ body{
 
 .image-fader img {
   position: absolute;
-  top: 0px;
+  bottom: 0px;
   left: 0px;
+  right: 0px;
+  width: 100%;
   animation-name: imagefade;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
@@ -236,6 +238,20 @@ body{
 }
 .image-fader img:nth-of-type(4) {
   animation-delay: 0;
+}
+
+.footer{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  margin: 0;
+  padding: 12px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  background: linear-gradient(360deg, rgba(0,0,0,0.8) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
 
