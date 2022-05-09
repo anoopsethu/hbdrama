@@ -256,6 +256,11 @@ body{
 
 
 @media(max-width: 800px){
+  body{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
   .mob{
     display: block;
   }
